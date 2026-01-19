@@ -8,18 +8,23 @@
     <style>
         body { background: #020617; color: white; font-family: ui-sans-serif, system-ui; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-image { width: 100%; height: 200px; object-fit: cover; border-radius: 20px 20px 0 0; }
+        .hero-banner { width: 100%; height: auto; border-radius: 20px 20px 0 0; }
+        .logo-circle { width: 80px; height: 80px; border-radius: 50%; margin-top: -40px; border: 4px solid #020617; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
     <div class="glass max-w-sm w-full rounded-3xl shadow-2xl overflow-hidden">
-        <img src="YOUR_IMAGE_URL_HERE" alt="Kaizen Brand" class="hero-image">
+        <img src="07583787-FABD-4B47-B5A8-212E24663553.jpg" alt="Kaizen Banner" class="hero-banner">
 
-        <div class="p-8 text-center">
+        <div class="flex justify-center">
+            <img src="457E7069-17BE-473C-B631-A666B0C8C270.jpg" alt="K24 Logo" class="logo-circle shadow-xl">
+        </div>
+
+        <div class="p-8 pt-4 text-center">
             <div class="mb-4">
                 <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Digital Access Only
+                    Private Member Access
                 </span>
             </div>
             
@@ -40,8 +45,8 @@
                 </button>
             </form>
             
-            <p class="text-[9px] text-gray-600 mt-6 uppercase tracking-widest">
-                Secure Portal • Kaizen Ecosystem
+            <p class="text-[9px] text-gray-600 mt-6 uppercase tracking-widest leading-relaxed">
+                Kaizen24hrs Digital Access <br> Secure Member Ecosystem
             </p>
         </div>
     </div>
@@ -57,10 +62,10 @@
             btn.innerHTML = "Success! Opening...";
             btn.style.backgroundColor = "#10b981";
 
-            // 1. Open PDF immediately
+            // Open PDF immediately
             window.open(FILE_LINK, '_blank');
 
-            // 2. Background save for Google Sheet (Finish this on computer later)
+            // Background save for Google Sheet (Link this on computer later)
             const GOOGLE_URL = 'YOUR_WEB_APP_URL_HERE'; 
             fetch(GOOGLE_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
         });
