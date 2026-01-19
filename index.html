@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Access Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #020617; color: white; font-family: ui-sans-serif, system-ui; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="glass max-w-sm w-full p-8 rounded-3xl shadow-2xl text-center">
+        <div class="mb-6">
+            <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                Skool Member Exclusive
+            </span>
+        </div>
+        
+        <h1 class="text-2xl font-bold mb-3 text-white">Unlock Your Asset</h1>
+        <p class="text-gray-400 text-sm mb-8">Enter your email to verify your status and start your download.</p>
+
+        <form id="downloadForm" class="space-y-4 text-left">
+            <div>
+                <label class="text-[10px] uppercase text-gray-500 font-bold ml-1">Email Address</label>
+                <input type="email" name="email" id="email" placeholder="name@email.com" required 
+                    class="w-full mt-1 px-5 py-4 rounded-xl bg-black/30 border border-white/10 text-white focus:border-indigo-500 outline-none transition-all">
+            </div>
+            
+            <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/20 transition-all">
+                Access Resource →
+            </button>
+        </form>
+
+        <p class="text-[10px] text-gray-600 mt-6 uppercase tracking-tighter">
+            Secure Member Verification
+        </p>
+    </div>
+
+    <script>
+        const form = document.getElementById('downloadForm');
+        const btn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.innerHTML = "Verifying...";
+            btn.disabled = true;
+
+            // CHANGE THESE TWO LINKS BELOW
+            const GOOGLE_SHEET_URL = 'YOUR_WEB_APP_URL'; 
+            const FILE_DOWNLOAD_URL = 'YOUR_FILE_LINK';
+
+            // Log data to Google Sheet
+            fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new FormData(form)
+            }).then(() => {
+                window.location.href = FILE_DOWNLOAD_URL;
+            }).catch(() => {
+                window.location.href = FILE_DOWNLOAD_URL;
+            });
+        });
+    </script>
+</body>
+</html>
