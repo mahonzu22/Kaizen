@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,61 +10,64 @@
     <style>
         body { background: #020617; color: white; font-family: ui-sans-serif, system-ui; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .brand-header { background: linear-gradient(90deg, #4f46e5, #7c3aed); padding: 12px; border-radius: 20px 20px 0 0; }
-        .step-pill { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11px; }
+        .brand-header { background: linear-gradient(90deg, #4f46e5, #7c3aed); padding: 15px; border-radius: 20px 20px 0 0; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 py-10">
+<body class="flex items-center justify-center min-h-screen p-4">
 
     <div class="glass max-w-sm w-full rounded-3xl shadow-2xl overflow-hidden text-center">
         
         <div class="brand-header">
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-                Kaizen24hrs Digital Access
-            </p>
+            <a href="https://mahonzu22.github.io/Kaizen/" target="_blank" class="text-xs font-bold uppercase tracking-widest text-white hover:opacity-80 transition-opacity">
+                ⚡ Kaizen24hrs Digital Access – Private Member Community
+            </a>
         </div>
 
         <div class="p-8">
-            <h1 class="text-2xl font-bold mb-2 text-white tracking-tight">Digital Income Avenue</h1>
-            <p class="text-gray-400 text-sm mb-6 italic">"Document your knowledge once, get paid forever."</p>
-
-            <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <span class="step-pill">1. Topic</span>
-                <span class="step-pill">2. Outline</span>
-                <span class="step-pill">3. Formatting</span>
-                <span class="step-pill">4. Cover</span>
-                <span class="step-pill">5. Upload</span>
-                <span class="step-pill">6. Pricing</span>
-                <span class="step-pill">7. Promo</span>
+            <div class="mb-4">
+                <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                    Blueprint Verified
+                </span>
             </div>
+            
+            <h1 class="text-2xl font-bold mb-2 text-white tracking-tight">Digital Income Avenue</h1>
+            <p class="text-gray-400 text-sm mb-8 leading-relaxed italic">
+                "Document your knowledge once, get paid forever."
+            </p>
 
             <form id="downloadForm" class="space-y-4 text-left">
-                <input type="email" name="email" id="email" placeholder="Enter Member Email" required 
-                    class="w-full px-5 py-4 rounded-xl bg-black/30 border border-white/10 text-white focus:border-indigo-500 outline-none transition-all">
+                <div>
+                    <label class="text-[10px] uppercase text-gray-500 font-bold ml-1">Member Email</label>
+                    <input type="email" name="email" id="email" placeholder="name@email.com" required 
+                        class="w-full mt-1 px-5 py-4 rounded-xl bg-black/30 border border-white/10 text-white focus:border-indigo-500 outline-none transition-all">
+                </div>
                 
                 <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/20 transition-all">
                     Access Blueprint →
                 </button>
             </form>
             
-            <div class="mt-10 pt-6 border-t border-white/5 flex justify-between items-center opacity-50">
-                <div class="text-[9px] uppercase tracking-widest font-bold">KDP Verified</div>
-                <div class="text-[9px] uppercase tracking-widest font-bold">Digital Asset</div>
-                <div class="text-[9px] uppercase tracking-widest font-bold">Residual Fix</div>
-            </div>
+            <p class="text-[9px] text-gray-600 mt-8 uppercase tracking-widest">
+                Secure Kaizen Ecosystem
+            </p>
         </div>
     </div>
 
     <script>
-        document.getElementById('downloadForm').addEventListener('submit', e => {
+        const form = document.getElementById('downloadForm');
+        const btn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn');
+            // Direct link to your PDF
+            const FILE_LINK = 'https://drive.google.com/file/d/13HItOTblNxsABB2CmR3aVA9N8cpIMgXX/view?usp=drivesdk';
+            
             btn.innerHTML = "Success! Opening...";
             btn.style.backgroundColor = "#10b981";
-            
-            // This opens your Blueprint PDF
+
+            // Open the blueprint immediately
             setTimeout(() => {
-                window.location.href = 'https://drive.google.com/file/d/13HItOTblNxsABB2CmR3aVA9N8cpIMgXX/view?usp=drivesdk';
+                window.location.href = FILE_LINK;
             }, 800);
         });
     </script>
