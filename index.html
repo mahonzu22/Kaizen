@@ -6,17 +6,16 @@
     <title>KDP Blueprint Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Tailwind Animations */
         @keyframes pulse-gold {
             0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.1); }
             50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.3); }
         }
         .animate-gold { animation: pulse-gold 4s infinite; }
-        
-        /* Custom Scrollbar for the Tech Log */
         .custom-scroll::-webkit-scrollbar { width: 2px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        /* Hide the honeypot field from users */
+        .hidden-field { display: none; }
     </style>
 </head>
 <body class="bg-[#010409] flex items-center justify-center min-h-screen p-4 selection:bg-amber-500 selection:text-black">
@@ -49,10 +48,16 @@
                 </div>
             </div>
 
-            <form id="downloadForm" class="space-y-5 text-left">
+            <form id="downloadForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-5 text-left">
+                
+                <input type="hidden" name="access_key" value="312914df-2b48-4801-844b-a9b3234ec7d7">
+                <input type="hidden" name="subject" value="New KDP Blueprint Lead">
+                <input type="hidden" name="from_name" value="KDP Terminal">
+                <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
+
                 <div class="space-y-2">
                     <label class="text-[10px] uppercase text-slate-500 font-black ml-1 tracking-widest">Authorization Key</label>
-                    <input type="email" id="email" placeholder="ENTER MEMBER EMAIL" required 
+                    <input type="email" name="email" id="email" placeholder="ENTER MEMBER EMAIL" required 
                         class="w-full px-6 py-5 rounded-2xl bg-black/50 border border-white/5 text-white placeholder:text-slate-800 font-bold focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all">
                 </div>
                 
@@ -67,12 +72,11 @@
                 
                 <div id="statusContainer" class="hidden mt-6 bg-black rounded-xl p-4 border border-white/5 text-left custom-scroll max-h-32 overflow-y-auto">
                     <p id="log1" class="text-[10px] font-mono text-emerald-500 leading-relaxed">> Verifying Credentials...</p>
-                    <p id="log2" class="text-[10px] font-mono text-emerald-500 leading-relaxed hidden">> Linking to Amazon API...</p>
-                    <p id="log3" class="text-[10px] font-mono text-amber-500 leading-relaxed hidden">> Formatting Manuscript...</p>
+                    <p id="log2" class="text-[10px] font-mono text-emerald-500 leading-relaxed hidden">> Establishing Secure Tunnel...</p>
+                    <p id="log3" class="text-[10px] font-mono text-amber-500 leading-relaxed hidden">> Recording Access Logs...</p>
                     <p id="log4" class="text-[10px] font-mono text-white leading-relaxed hidden mt-2 font-bold uppercase tracking-widest">> Access Granted. Open Vault. <span class="animate-pulse">_</span></p>
                 </div>
             </form>
-            
             <p class="text-[10px] text-slate-700 mt-12 uppercase tracking-[0.4em] font-black italic">
                 Kaizen Protected Ecosystem
             </p>
@@ -82,33 +86,45 @@
     <script>
         document.getElementById('downloadForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const form = e.target;
             const btn = document.getElementById('submitBtn');
             const loader = document.getElementById('loader');
             const progress = document.getElementById('progress');
             const container = document.getElementById('statusContainer');
-            
+            const formData = new FormData(form);
+
+            // Hide button and show terminal logs
             btn.classList.add('hidden');
             loader.classList.remove('hidden');
             container.classList.remove('hidden');
 
+            // Send data to Web3Forms in background
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            // Run the visual terminal animation
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
                     document.getElementById('log4').classList.remove('hidden');
                     
+                    // Final Redirect to the KDP Blueprint
                     setTimeout(() => {
                         window.location.href = 'https://drive.google.com/file/d/13HItOTblNxsABB2CmR3aVA9N8cpIMgXX/view?usp=drivesdk';
-                    }, 800);
+                    }, 1000);
                 } else {
-                    width += Math.random() * 20;
+                    width += Math.random() * 18;
                     if(width > 100) width = 100;
                     progress.style.width = width + '%';
                     
-                    if(width > 25) document.getElementById('log2').classList.remove('hidden');
-                    if(width > 60) document.getElementById('log3').classList.remove('hidden');
+                    if(width > 20) document.getElementById('log2').classList.remove('hidden');
+                    if(width > 55) document.getElementById('log3').classList.remove('hidden');
                 }
-            }, 400);
+            }, 350);
         });
     </script>
 </body>
